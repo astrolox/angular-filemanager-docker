@@ -12,8 +12,10 @@ include 'LocalBridge/Rest.php';
 include 'LocalBridge/Translate.php';
 include 'LocalBridge/FileManagerApi.php';
 
+ini_set('date.timezone', 'Etc/UTC');
+
 //Takes two arguments - base path without last slash (default: '$currentDirectory/../files'); language (default: 'en'); mute_errors (default: true, will call ini_set('display_errors', 0))
-$fileManagerApi = new FileManagerApi();
+$fileManagerApi = new FileManagerApi('/var/www/files', 'en', false);
 
 $rest = new Rest();
 $rest->post([$fileManagerApi, 'postHandler'])
